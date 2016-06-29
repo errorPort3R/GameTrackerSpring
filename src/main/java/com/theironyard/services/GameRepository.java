@@ -11,15 +11,15 @@ import java.util.List;
  * Created by zach on 3/8/16.
  */
 public interface GameRepository extends CrudRepository<Game, Integer> {
-    List<Game> findByUser(User user);
-    List<Game> findByUserAndGenre(User user, String genre);
-    List<Game> findByUserAndGenreAndReleaseYear(User user, String genre, int releaseYear);
-    List<Game> findByUserAndGenreAndReleaseYearIsGreaterThanEqual(User user, String genre, int minReleaseYear);
+    public Iterable<Game> findByUser(User user);
+    public Iterable<Game> findByUserAndGenre(User user, String genre);
+    public Iterable<Game> findByUserAndGenreAndReleaseYear(User user, String genre, int releaseYear);
+    public Iterable<Game> findByUserAndGenreAndReleaseYearIsGreaterThanEqual(User user, String genre, int minReleaseYear);
 
-    Game findFirstByGenre(String genre);
-    int countByGenre(String genre);
-    List<Game> findByGenreOrderByNameAsc(String genre);
+    public Game findFirstByGenre(String genre);
+    public int countByGenre(String genre);
+    public List<Game> findByGenreOrderByNameAsc(String genre);
 
     @Query("SELECT g FROM Game g WHERE g.platform LIKE ?1%")
-    List<Game> findByPlatformStartsWith(String platform);
+    public Iterable<Game> findByPlatformStartsWith(String platform);
 }
